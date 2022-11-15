@@ -17,8 +17,7 @@ def estagiarios_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-# @api_view(['GET', 'PUT', 'DELETE'])
-@api_view(['GET', 'DELETE'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def estagiarios_detail(request, id):
     try:
         estagiario = Estagiario.objects.get(pk=id)
@@ -29,29 +28,16 @@ def estagiarios_detail(request, id):
         serializer = EstagiarioSerializer(estagiario)
         return Response(serializer.data)
 
-    # elif request.method == 'PUT':
-    #     serializer = EstagiarioSerializer(estagiario, data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data)
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'PUT':
+        serializer = EditEstagiarioSerializer(estagiario, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
         estagiario.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-def estagiarios_edit(request, id):
-    try:
-        estagiario = Estagiario.objects.get(pk=id)
-    except Estagiario.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    serializer = EditEstagiarioSerializer(estagiario, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
-
 # Setores
 @api_view(['GET', 'POST'])
 def setores_list(request):
