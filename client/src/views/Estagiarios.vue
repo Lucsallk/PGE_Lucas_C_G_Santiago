@@ -9,8 +9,6 @@ const fetchEstagiarios = () => {
   getAPI
     .get("/estagiarios/")
     .then((response) => {
-      console.log("data fetched");
-      console.log(response.data);
       estagiarios.value = response.data;
     })
     .catch((err) => console.log(err));
@@ -27,6 +25,22 @@ const apagarEstagiario = (id) => {
       console.log(err);
     });
 };
+
+const dadosEstagiario = ref({
+  nomeCompleto: "",
+  cpf: "",
+  dataNascimento: "",
+  setorAlocado: 0,
+  cursoGrad: "",
+  instEnsino: "",
+  cargaHoraria: ""
+})
+
+const editarEstagiario = (estagiario) => {
+  dadosEstagiario.value.nomeCompleto = estagiario.nomeCompleto
+  console.log(dadosEstagiario.value.nomeCompleto)
+}
+
 onMounted(fetchEstagiarios);
 </script>
 
@@ -73,7 +87,7 @@ onMounted(fetchEstagiarios);
                   {{ estagiario.dataNascimento }}
                 </span>
                 <span>
-                  <span class="fw-semibold">Setor Alocado</span>
+                  <span class="fw-semibold">Setor alocado</span>
                   {{ estagiario.setorAlocado }}
                 </span>
               </div>
@@ -85,17 +99,15 @@ onMounted(fetchEstagiarios);
                   {{ estagiario.cursoGrad }}
                 </span>
                 <span>
-                  <span class="fw-semibold">Insituiçaõ de ensino</span>
+                  <span class="fw-semibold">Insituição de ensino</span>
                   {{ estagiario.instEnsino }}
                 </span>
                 <span>
-                  <span class="fw-semibold">Data de nascimento</span>
+                  <span class="fw-semibold">Carga Horária</span>
                   {{ estagiario.cargaHoraria }}
                 </span>
               </div>
             </div>
-            
-            <ModalEditEstagiario :estagiario="estagiario"/>
 
             <div class="col-12 col-sm-2 col-lg-1 align-self-center p-2">
               <button
@@ -103,6 +115,7 @@ onMounted(fetchEstagiarios);
                 class="btn btn-warning fw-semibold shadow"
                 data-bs-toggle="modal"
                 data-bs-target="#editModal"
+                @click="editarEstagiario(estagiario)"
               >
                 Editar
               </button>
@@ -110,11 +123,13 @@ onMounted(fetchEstagiarios);
             <div class="col-12 col-sm-2 col-lg-1 p-2 align-self-center">
               <button
                 @click="apagarEstagiario(estagiario.id)"
-                class="btn btn-danger"
+                class="btn btn-danger fw-bold shadow"
               >
                 Apagar
               </button>
             </div>
+
+            <ModalEditEstagiario :dadosEstagiario="dadosEstagiario"/>
           </div>
         </div>
       </div>

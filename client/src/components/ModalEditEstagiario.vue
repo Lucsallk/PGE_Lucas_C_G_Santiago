@@ -1,14 +1,8 @@
 <script setup>
 import { ref } from "vue";
-let props = defineProps(["estagiario"]);
+const props = defineProps(["dadosEstagiario"]);
 
-const data = ref({
-  nomeCompleto: props.estagiario.nomeCompleto,
-});
-
-// data = props.value
-// console.log(data.value.nomeCompleto);
-
+console.log(props.estagiario)
 
 const editarEstagiario = () => {
   console.log("Clicked editarEstagiario!");
@@ -44,7 +38,7 @@ const editarEstagiario = () => {
                 >Nome completo:</label
               >
               <input
-                v-model="data.nomeCompleto"
+                v-model="props.dadosEstagiario.nomeCompleto"
                 id="nomeCompleto"
                 class="form-control"
                 placeholder="Fulado da Silva"
