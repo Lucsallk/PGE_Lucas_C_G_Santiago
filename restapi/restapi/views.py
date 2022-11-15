@@ -20,7 +20,6 @@ def estagiarios_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def estagiarios_detail(request, id):
-
     try:
         estagiario = Estagiario.objects.get(pk=id)
     except Estagiario.DoesNotExist:
@@ -55,7 +54,6 @@ def setores_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def setores_detail(request, id):
-
     try:
         setor = Setor.objects.get(pk=id)
     except Setor.DoesNotExist:

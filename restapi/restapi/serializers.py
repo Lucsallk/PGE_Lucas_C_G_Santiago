@@ -11,4 +11,3 @@ class SetorSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Setor
         fields = ['id', 'nome', 'chefe', 'capacidadeSetor']
-        #fiels = '__all__'
