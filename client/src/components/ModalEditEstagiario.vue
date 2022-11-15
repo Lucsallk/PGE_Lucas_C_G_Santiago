@@ -1,0 +1,76 @@
+<script setup>
+import { ref } from "vue";
+let props = defineProps(["estagiario"]);
+
+const data = ref({
+  nomeCompleto: props.estagiario.nomeCompleto,
+});
+
+// data = props.value
+// console.log(data.value.nomeCompleto);
+
+
+const editarEstagiario = () => {
+  console.log("Clicked editarEstagiario!");
+};
+</script>
+
+<template>
+  <div
+    class="modal fade"
+    id="editModal"
+    tabindex="-1"
+    aria-labelledby="cadModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="cadModalLabel">
+            Adicionar Estagiário
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="mb-3">
+              <label for="nomeCompleto" class="form-label"
+                >Nome completo:</label
+              >
+              <input
+                v-model="data.nomeCompleto"
+                id="nomeCompleto"
+                class="form-control"
+                placeholder="Fulado da Silva"
+                type="text"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-center">
+          <button
+            type="button"
+            class="btn btn-danger fw-semibold"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button
+            @click="editarEstagiario"
+            type="button"
+            class="btn btn-success fw-semibold"
+          >
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
