@@ -1,11 +1,16 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from restapi import views
+from rest_framework import routers
+from .views import EstagiariosViewSet, SetoresViewSet
 # Need to check patch
+
+router = routers.DefaultRouter()
+router.register(r'estagiarios', EstagiariosViewSet, basename = 'estagiarios')
+router.register(r'setores', SetoresViewSet, basename = 'setores')
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('estagiarios/', views.estagiarios_list),
-    path('estagiarios/<int:id>', views.estagiarios_detail),
-    path('setores/', views.setores_list),
-    path('setores/<int:id>', views.setores_detail),
+    path('', include(router.urls)),
 ]

@@ -6,11 +6,6 @@ class EstagiarioSerializer(serializers.ModelSerializer):
         model = Estagiario
         fields = ['id', 'nomeCompleto', 'cpf', 'dataNascimento', 'cursoGrad', 'instEnsino', 'cargaHoraria', 'setorAlocado']
         #fiels = '__all__'
-
-class EditEstagiarioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Estagiario
-        fields = ['id', 'nomeCompleto', 'dataNascimento', 'cursoGrad', 'instEnsino', 'cargaHoraria', 'setorAlocado']
     
 class SetorSerializer(serializers.ModelSerializer):
     class Meta: 
