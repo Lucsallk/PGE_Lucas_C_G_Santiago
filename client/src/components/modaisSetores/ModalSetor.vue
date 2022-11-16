@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { getAPI } from "../../assets/axios";
 const nome = ref("");
 const chefe = ref("");
-const capacidadeSetor = ref("");
+const capacidadeSetor = ref(0);
 
 const adicionarSetores = () => {
   getAPI
@@ -14,7 +14,7 @@ const adicionarSetores = () => {
     })
     .then((response) => {
       console.log(response);
-      location.reload();
+      // location.reload();
     })
     .catch((err) => console.log(err));
 };

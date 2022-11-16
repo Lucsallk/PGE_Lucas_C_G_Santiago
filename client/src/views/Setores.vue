@@ -77,7 +77,7 @@ onMounted(fetchSetor);
               <div class="d-flex flex-column">
                 <div class="d-flex flex-column justify-content-center">
                   <p class="fw-semibold text-center">Chefe</p>
-                  <p class="text-center mb-0">Ayrton Hora</p>
+                  <p class="text-center mb-0">{{ setor.chefe }}</p>
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@ onMounted(fetchSetor);
               <div class="d-flex flex-column">
                 <div class="d-flex flex-column justify-content-center">
                   <p class="fw-semibold text-center">Capacidade</p>
-                  <p class="text-center mb-0">10</p>
+                  <p class="text-center mb-0">{{ setor.capacidadeSetor}}</p>
                 </div>
               </div>
             </div>
@@ -100,7 +100,7 @@ onMounted(fetchSetor);
                 data-bs-target="#exampleModal"
                 @click="editarSetor(setor)" 
               >
-                Launch demo modal
+                Editar
               </button>
             </div>
             <div
