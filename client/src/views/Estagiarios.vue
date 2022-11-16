@@ -1,8 +1,8 @@
 <script setup>
 import { getAPI } from "../assets/axios";
 import { onMounted, ref } from "vue";
-import ModalEstagiarios from "../components/ModalEstagiarios.vue";
-import ModalEditEstagiario from "../components/ModalEditEstagiario.vue";
+import ModalEstagiarios from "../components/modaisEstagiario/ModalEstagiarios.vue";
+import ModalEditEstagiario from "../components/modaisEstagiario/ModalEditEstagiario.vue";
 
 const estagiarios = ref([]);
 const fetchEstagiarios = () => {
@@ -27,6 +27,7 @@ const apagarEstagiario = (id) => {
 };
 
 const dadosEstagiario = ref({
+  id: 0,
   nomeCompleto: "",
   cpf: "",
   dataNascimento: "",
@@ -37,8 +38,14 @@ const dadosEstagiario = ref({
 })
 
 const editarEstagiario = (estagiario) => {
+  dadosEstagiario.value.id = estagiario.id
   dadosEstagiario.value.nomeCompleto = estagiario.nomeCompleto
-  console.log(dadosEstagiario.value.nomeCompleto)
+  dadosEstagiario.value.cpf = estagiario.cpf
+  dadosEstagiario.value.dataNascimento = estagiario.dataNascimento
+  dadosEstagiario.value.setorAlocado = estagiario.setorAlocado
+  dadosEstagiario.value.cursoGrad = estagiario.cursoGrad
+  dadosEstagiario.value.instEnsino = estagiario.instEnsino
+  dadosEstagiario.value.cargaHoraria = estagiario.cargaHoraria
 }
 
 onMounted(fetchEstagiarios);

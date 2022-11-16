@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getAPI } from "../assets/axios";
+import { getAPI } from '../../assets/axios';
 const nomeCompleto = ref("");
 const cpf = ref("");
 const dataDeNascimento = ref("");
@@ -11,7 +11,7 @@ const setorAlocado = ref();
 
 const adicionarEstagiario = () => {
     console.log(nomeCompleto.value)
-    getAPI.post("/estagiarios/", {
+    getAPI.patch("/estagiarios/", {
         nomeCompleto: nomeCompleto.value,
         cpf: cpf.value,
         dataNascimento: dataDeNascimento.value,

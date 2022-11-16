@@ -1,7 +1,4 @@
-<script setup>
-import router from '../router';
-
-</script>
+<script setup></script>
 
 <template>
   <main class="mb-auto">

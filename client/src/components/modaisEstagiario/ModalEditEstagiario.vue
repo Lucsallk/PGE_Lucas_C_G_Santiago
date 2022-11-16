@@ -1,12 +1,26 @@
 <script setup>
-import { ref } from "vue";
+import { getAPI } from '../../assets/axios';
 const props = defineProps(["dadosEstagiario"]);
 
-console.log(props.estagiario)
-
-const editarEstagiario = () => {
-  console.log("Clicked editarEstagiario!");
+const editarEstagiario = (dadosEstagiario) => {
+  console.log(dadosEstagiario.id);
+  console.log(dadosEstagiario.nomeCompleto);
+  console.log("/estagiarios/" + dadosEstagiario.id + "/")
+  getAPI.patch("/estagiarios/" + dadosEstagiario.id + "/", {
+        id: dadosEstagiario.id,
+        nomeCompleto: dadosEstagiario.nomeCompleto,
+        cpf: dadosEstagiario.cpf,
+        dataNascimento: dadosEstagiario.dataDeNascimento,
+        cursoGrad: dadosEstagiario.cursoDeGraduacao,
+        instEnsino: dadosEstagiario.instEnsino,
+        cargaHoraria: dadosEstagiario.cargaHoraria,
+        setorAlocado: dadosEstagiario.setorAlocado,
+    }).then(response => {
+        console.log(response)
+        location.reload();
+    }).catch(err => console.log(err))
 };
+
 </script>
 
 <template>
@@ -57,7 +71,7 @@ const editarEstagiario = () => {
             Cancelar
           </button>
           <button
-            @click="editarEstagiario"
+            @click="editarEstagiario(props.dadosEstagiario)"
             type="button"
             class="btn btn-success fw-semibold"
           >
