@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
-import { getAPI } from '../../assets/axios';
+import { onMounted, ref } from "vue";
+import { getAPI } from "../../assets/axios";
 const nomeCompleto = ref("");
 const cpf = ref("");
 const dataDeNascimento = ref("");
@@ -10,20 +10,36 @@ const cargaHoraria = ref(0);
 const setorAlocado = ref();
 
 const adicionarEstagiario = () => {
-    console.log(nomeCompleto.value)
-    getAPI.post("/estagiarios/", {
-        nomeCompleto: nomeCompleto.value,
-        cpf: cpf.value,
-        dataNascimento: dataDeNascimento.value,
-        cursoGrad: cursoDeGraduacao.value,
-        instEnsino: instEnsino.value,
-        cargaHoraria: cargaHoraria.value,
-        setorAlocado: setorAlocado.value,
-    }).then(response => {
-        console.log(response)
-        location.reload();
-    }).catch(err => console.log(err))
-}
+  console.log(nomeCompleto.value);
+  getAPI
+    .post("/estagiarios/", {
+      nomeCompleto: nomeCompleto.value,
+      cpf: cpf.value,
+      dataNascimento: dataDeNascimento.value,
+      cursoGrad: cursoDeGraduacao.value,
+      instEnsino: instEnsino.value,
+      cargaHoraria: cargaHoraria.value,
+      setorAlocado: setorAlocado.value,
+    })
+    .then((response) => {
+      console.log(response);
+      location.reload();
+    })
+    .catch((err) => console.log(err));
+};
+
+const setores = ref([]);
+
+const listarSetores = () => {
+  getAPI
+    .get("/setores/")
+    .then((response) => {
+      setores.value = response.data;
+    })
+    .catch((err) => console.log(err));
+};
+
+onMounted(listarSetores);
 </script>
 <template>
   <div
@@ -94,18 +110,16 @@ const adicionarEstagiario = () => {
                 >
                 <select
                   v-model="setorAlocado"
-                  class="form-select"
                   id="setorAlocado"
+                  class="form-select"
                 >
-                  <option value="1">CODIN</option>
-                  <option value="2">
-                    Teclonogia de informação - TI
+                  <option
+                    v-for="setor in setores"
+                    :key="setor.id"
+                    :value="setor.id"
+                  >
+                    {{ setor.nome }}
                   </option>
-                  <option value="3">
-                    Recursos Humanos - RH
-                  </option>
-                  <option value="4">Almoxarifado</option>
-                  <option value="5">Diretoria</option>
                 </select>
               </div>
             </div>
@@ -140,19 +154,19 @@ const adicionarEstagiario = () => {
               <label for="instEnsino" class="form-label"
                 >Instituição de ensino</label
               >
-              <select
-                v-model="instEnsino"
-                class="form-select"
-                id="instEnsino"
-              >
-                <option value="Universidade Federal de Sergipe - UFS">Universidade Federal de Sergipe - UFS</option>
+              <select v-model="instEnsino" class="form-select" id="instEnsino">
+                <option value="Universidade Federal de Sergipe - UFS">
+                  Universidade Federal de Sergipe - UFS
+                </option>
                 <option value="Universidade Tiradentes - UNIT">
                   Universidade Tiradentes - UNIT
                 </option>
                 <option value="Universidade Estacio de Sá - ESTACIO">
                   Universidade Estacio de Sá - ESTACIO
                 </option>
-                <option value="Faculdade Mauricio de Nassau - UNINASSAU">Faculdade Mauricio de Nassau - UNINASSAU</option>
+                <option value="Faculdade Mauricio de Nassau - UNINASSAU">
+                  Faculdade Mauricio de Nassau - UNINASSAU
+                </option>
               </select>
             </div>
           </div>

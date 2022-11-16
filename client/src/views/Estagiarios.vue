@@ -1,6 +1,6 @@
 <script setup>
 import { getAPI } from "../assets/axios";
-import { onMounted, ref } from "vue";
+import { onMounted, onBeforeMount, ref } from "vue";
 import ModalEstagiarios from "../components/modaisEstagiario/ModalEstagiarios.vue";
 import ModalEditEstagiario from "../components/modaisEstagiario/ModalEditEstagiario.vue";
 
@@ -34,21 +34,41 @@ const dadosEstagiario = ref({
   setorAlocado: 0,
   cursoGrad: "",
   instEnsino: "",
-  cargaHoraria: ""
-})
+  cargaHoraria: "",
+});
 
 const editarEstagiario = (estagiario) => {
-  dadosEstagiario.value.id = estagiario.id
-  dadosEstagiario.value.nomeCompleto = estagiario.nomeCompleto
-  dadosEstagiario.value.cpf = estagiario.cpf
-  dadosEstagiario.value.dataNascimento = estagiario.dataNascimento
-  dadosEstagiario.value.setorAlocado = estagiario.setorAlocado
-  dadosEstagiario.value.cursoGrad = estagiario.cursoGrad
-  dadosEstagiario.value.instEnsino = estagiario.instEnsino
-  dadosEstagiario.value.cargaHoraria = estagiario.cargaHoraria
-}
+  dadosEstagiario.value.id = estagiario.id;
+  dadosEstagiario.value.nomeCompleto = estagiario.nomeCompleto;
+  dadosEstagiario.value.cpf = estagiario.cpf;
+  dadosEstagiario.value.dataNascimento = estagiario.dataNascimento;
+  dadosEstagiario.value.setorAlocado = estagiario.setorAlocado;
+  dadosEstagiario.value.cursoGrad = estagiario.cursoGrad;
+  dadosEstagiario.value.instEnsino = estagiario.instEnsino;
+  dadosEstagiario.value.cargaHoraria = estagiario.cargaHoraria;
+};
+
+const setores = ref([]);
+
+const listarSetores = () => {
+  getAPI
+    .get("/setores/")
+    .then((response) => {
+      setores.value = response.data;
+    })
+    .catch((err) => console.log(err));
+};
+
+
+let varAuxiliar = [];
 
 onMounted(fetchEstagiarios);
+onBeforeMount(listarSetores);
+
+const idParaNome = (idSetor) => {
+  varAuxiliar.value = setores.value.find(({id}) => idSetor == id)
+  return varAuxiliar.value.nome
+};
 </script>
 
 <template>
@@ -95,7 +115,7 @@ onMounted(fetchEstagiarios);
                 </span>
                 <span>
                   <span class="fw-semibold">Setor alocado</span>
-                  {{ estagiario.setorAlocado }}
+                  {{ idParaNome(estagiario.setorAlocado) }}
                 </span>
               </div>
             </div>
@@ -116,7 +136,9 @@ onMounted(fetchEstagiarios);
               </div>
             </div>
 
-            <div class="col-6 col-sm-2 col-lg-1 d-flex justify-content-center align-self-center p-2">
+            <div
+              class="col-6 col-sm-2 col-lg-1 d-flex justify-content-center align-self-center p-2"
+            >
               <button
                 type="button"
                 class="btn btn-warning fw-semibold shadow"
@@ -127,7 +149,9 @@ onMounted(fetchEstagiarios);
                 Editar
               </button>
             </div>
-            <div class="col-6 col-sm-2 col-lg-1 p-2 d-flex justify-content-center align-self-center">
+            <div
+              class="col-6 col-sm-2 col-lg-1 p-2 d-flex justify-content-center align-self-center"
+            >
               <button
                 @click="apagarEstagiario(estagiario.id)"
                 class="btn btn-danger fw-bold shadow"
@@ -136,7 +160,7 @@ onMounted(fetchEstagiarios);
               </button>
             </div>
 
-            <ModalEditEstagiario :dadosEstagiario="dadosEstagiario"/>
+            <ModalEditEstagiario :dadosEstagiario="dadosEstagiario" />
           </div>
         </div>
       </div>

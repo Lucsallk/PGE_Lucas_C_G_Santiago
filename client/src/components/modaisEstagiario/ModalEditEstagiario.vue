@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from "vue";
 import { getAPI } from "../../assets/axios";
 const props = defineProps(["dadosEstagiario"]);
 
@@ -21,6 +22,19 @@ const editarEstagiario = (dadosEstagiario) => {
     })
     .catch((err) => console.log(err));
 };
+
+const setores = ref([]);
+
+const listarSetores = () => {
+  getAPI
+    .get("/setores/")
+    .then((response) => {
+      setores.value = response.data;
+    })
+    .catch((err) => console.log(err));
+};
+
+onMounted(listarSetores);
 </script>
 
 <template>
@@ -113,15 +127,14 @@ const editarEstagiario = (dadosEstagiario) => {
 
           <div class="row">
             <div class="mb-3">
-              <label for="setorAlocado" class="form-label"
-                >Setor alocado</label
-              >
-              <input
+              <label for="setorAlocado" class="form-label">Setor alocado</label>
+              <select
                 v-model="props.dadosEstagiario.setorAlocado"
                 id="setorAlocado"
-                class="form-control"
-                type="text"
-              />
+                class="form-select"
+              >
+                <option v-for="setor in setores" :key="setor.id" :value="setor.id">{{ setor.nome }}</option>
+              </select>
             </div>
           </div>
         </div>
