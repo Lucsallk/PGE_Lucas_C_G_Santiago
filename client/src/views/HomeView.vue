@@ -4,7 +4,7 @@
   <main class="mb-auto">
     <div class="container-fluid">
       <div class="row justify-content-center mt-2 mt-sm-5">
-        <div class="col-10">
+        <div class="col-10 col-lg-8">
           <div class="row">
             <div class="col-12 col-sm-6 justify-content-center text-center">
               <img

@@ -88,7 +88,7 @@ const adicionarSetores = () => {
             type="button"
             class="btn btn-success fw-semibold"
           >
-            Save changes
+            Confirmar
           </button>
         </div>
       </div>
