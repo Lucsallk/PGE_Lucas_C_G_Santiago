@@ -64,19 +64,19 @@ onMounted(fetchSetor);
       </div>
     </div>
     <div v-for="setor in setores" :key="setores.id" class="container-fluid">
-      <div class="row justify-content-center mx-2 mb-4">
-        <div class="col-8 col-sm-8 col-lg-5 bg-light rounded shadow">
-          <div class="row px-3 p-2">
+      <div class="row align-content-center justify-content-center mx-2 mb-4">
+        <div class="col-8 col-sm-8 col-lg-7 bg-light rounded shadow">
+          <div class="row align-items-center px-3 p-2">
             <div class="col-12 col-sm-4 col-lg-3 p-2">
               <div class="d-flex flex-column justify-content-center">
-                <p class="fw-semibold text-center">Setor</p>
+                <p class="fw-semibold text-center mb-0">Setor</p>
                 <p class="text-center mb-0">{{ setor.nome }}</p>
               </div>
             </div>
             <div class="col-12 col-sm-4 col-lg-3 p-2">
               <div class="d-flex flex-column">
                 <div class="d-flex flex-column justify-content-center">
-                  <p class="fw-semibold text-center">Chefe</p>
+                  <p class="fw-semibold text-center mb-0">Chefe</p>
                   <p class="text-center mb-0">{{ setor.chefe }}</p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ onMounted(fetchSetor);
             <div class="col-12 col-sm-4 col-lg-2 p-2">
               <div class="d-flex flex-column">
                 <div class="d-flex flex-column justify-content-center">
-                  <p class="fw-semibold text-center">Capacidade</p>
+                  <p class="fw-semibold text-center mb-0">Capacidade</p>
                   <p class="text-center mb-0">{{ setor.capacidadeSetor}}</p>
                 </div>
               </div>

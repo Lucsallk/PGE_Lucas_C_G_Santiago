@@ -60,6 +60,7 @@ onMounted(listarSetores);
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            required
           ></button>
         </div>
 
@@ -128,8 +129,9 @@ onMounted(listarSetores);
           <div class="row mb-3">
             <div class="col-8">
               <label for="cursoDeGraduacao" class="form-label"
-                >Curso de graduacao</label
+                >Curso de graduação</label
               >
+              
               <input
                 v-model="cursoDeGraduacao"
                 id="cursoDeGraduacao"
@@ -185,7 +187,7 @@ onMounted(listarSetores);
             type="button"
             class="btn btn-success fw-semibold"
           >
-            Save changes
+            Confirmar
           </button>
         </div>
       </div>

@@ -14,7 +14,7 @@ const adicionarSetores = () => {
     })
     .then((response) => {
       console.log(response);
-      // location.reload();
+      location.reload();
     })
     .catch((err) => console.log(err));
 };

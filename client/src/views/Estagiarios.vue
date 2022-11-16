@@ -59,15 +59,14 @@ const listarSetores = () => {
     .catch((err) => console.log(err));
 };
 
-
 let varAuxiliar = [];
 
 onMounted(fetchEstagiarios);
 onBeforeMount(listarSetores);
 
 const idParaNome = (idSetor) => {
-  varAuxiliar.value = setores.value.find(({id}) => idSetor == id)
-  return varAuxiliar.value.nome
+  varAuxiliar.value = setores.value.find(({ id }) => idSetor == id);
+  return varAuxiliar.value.nome;
 };
 </script>
 
@@ -98,46 +97,59 @@ const idParaNome = (idSetor) => {
     >
       <div class="row justify-content-center mx-2 mb-4">
         <div class="col-12 col-sm-10 bg-light rounded shadow">
-          <div class="row px-3">
+          <div class="row align-items-center px-3">
             <div class="col-12 col-sm-4 p-2">
               <div class="d-flex flex-column">
-                <span>
-                  <span class="fw-semibold">Nome</span>
-                  {{ estagiario.nomeCompleto }}
-                </span>
-                <span>
-                  <span class="fw-semibold">CPF</span>
-                  {{ estagiario.cpf }}
-                </span>
-                <span>
-                  <span class="fw-semibold">Data de nascimento</span>
-                  {{ estagiario.dataNascimento }}
-                </span>
-                <span>
-                  <span class="fw-semibold">Setor alocado</span>
-                  {{ idParaNome(estagiario.setorAlocado) }}
-                </span>
+                <div>
+                  <p class="fw-semibold text-center mb-0">Nome</p>
+                  <p class="mb-0 text-center">
+                    {{ estagiario.nomeCompleto }}
+                  </p>
+                </div>
+                <div>
+                  <p class="fw-semibold text-center mb-0">CPF</p>
+                  <p class="mb-0 text-center">
+                    {{ estagiario.cpf }}
+                  </p>
+                </div>
+                <div>
+                  <p class="fw-semibold text-center mb-0">Data de nascimento</p>
+                  <p class="mb-0 text-center">
+                    {{ estagiario.dataNascimento }}
+                  </p>
+                </div>
+                <div>
+                  <p class="fw-semibold text-center mb-0">Setor alocado</p>
+                  <p class="mb-0 text-center">
+                    {{ idParaNome(estagiario.setorAlocado) }}
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="col-12 col-sm-4 col-lg-6 p-2">
-              <div class="d-flex flex-column">
-                <span>
-                  <span class="fw-semibold">Curso de graduação</span>
+
+            <div class="col-12 col-sm-4 col-lg-4 p-2">
+              <div class="row">
+                <p class="fw-semibold mb-0 text-center">Curso de graduação</p>
+                <p class="mb-1 text-center">
                   {{ estagiario.cursoGrad }}
-                </span>
-                <span>
-                  <span class="fw-semibold">Insituição de ensino</span>
+                </p>
+              </div>
+              <div class="row">
+                <p class="fw-semibold mb-0 text-center">Insituição de ensino</p>
+                <p class="mb-1 text-center">
                   {{ estagiario.instEnsino }}
-                </span>
-                <span>
-                  <span class="fw-semibold">Carga Horária</span>
+                </p>
+              </div>
+              <div class="row">
+                <p class="fw-semibold mb-0 text-center">Carga Horária</p>
+                <p class="mb-1 text-center">
                   {{ estagiario.cargaHoraria }}
-                </span>
+                </p>
               </div>
             </div>
 
             <div
-              class="col-6 col-sm-2 col-lg-1 d-flex justify-content-center align-self-center p-2"
+              class="col-6 col-sm-2 col-lg-2 d-flex justify-content-center align-self-center p-2"
             >
               <button
                 type="button"
@@ -150,7 +162,7 @@ const idParaNome = (idSetor) => {
               </button>
             </div>
             <div
-              class="col-6 col-sm-2 col-lg-1 p-2 d-flex justify-content-center align-self-center"
+              class="col-6 col-sm-2 col-lg-2 p-2 d-flex justify-content-center align-self-center"
             >
               <button
                 @click="apagarEstagiario(estagiario.id)"

@@ -1,6 +1,6 @@
 <template>
   <footer class="footer mt-auto py-3 bg-white">
-    <div class="container-fluid d-flex justify-content-between">
+    <div class="container-fluid d-flex flex-column flex-sm-row justify-content-between">
       <span class="fw-semibold text-center">
         Administração de Estagiários 1.0
       </span>

@@ -75,20 +75,20 @@ const editarSetor = (dadosSetor) => {
           </div>
         </div>
 
-        <div class="modal-footer">
+        <div class="modal-footer justify-content-center">
           <button
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-danger"
             data-bs-dismiss="modal"
           >
-            Close
+            Cancelar
           </button>
           <button
             @click="editarSetor(props.dadosSetor)"
             type="button"
             class="btn btn-success fw-semibold"
           >
-            Save changes
+            Confirmar
           </button>
         </div>
       </div>

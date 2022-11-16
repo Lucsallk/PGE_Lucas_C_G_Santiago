@@ -2,7 +2,7 @@ from django.db import models
 from cpf_field.models import CPFField
 
 class Setor(models.Model):
-    nome = models.CharField(max_length=220)
+    nome = models.CharField(max_length=220, unique=True)
     chefe = models.CharField(max_length=200)
     capacidadeSetor = models.SmallIntegerField()
     

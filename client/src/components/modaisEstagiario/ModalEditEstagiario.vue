@@ -76,7 +76,7 @@ onMounted(listarSetores);
           <div class="row mb-3">
             <div class="col-7">
               <label for="cursoGrad" class="form-label"
-                >Curso de gradução:</label
+                >Curso de graduação:</label
               >
               <input
                 v-model="props.dadosEstagiario.cursoGrad"
@@ -150,7 +150,7 @@ onMounted(listarSetores);
             type="button"
             class="btn btn-success fw-semibold"
           >
-            Save changes
+            Confirmar 
           </button>
         </div>
       </div>
