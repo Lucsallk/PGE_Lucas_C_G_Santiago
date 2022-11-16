@@ -12,7 +12,7 @@ class Setor(models.Model):
 # talvez eu precise remover a uniquicidade de cpf por agora
 class Estagiario(models.Model):
     nomeCompleto = models.CharField(max_length=220)
-    cpf = CPFField(max_length=11, unique=True)
+    cpf = CPFField(unique=True)
     dataNascimento = models.DateField()
     cursoGrad = models.CharField(max_length=120)
     instEnsino = models.CharField(max_length=220)
