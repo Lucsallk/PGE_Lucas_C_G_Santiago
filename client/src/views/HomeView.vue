@@ -13,6 +13,7 @@
                 alt=""
               />
             </div>
+            
             <div class="col-12 col-sm-6 text-center align-self-center">
               <p class="fw-semibold">
                 Software desenvolvido para a entrevista de estágio para a <span class="fw-semibold">CODIN</span>                 utilizando como tecnologia para desenvolvimento Django e Vue.
