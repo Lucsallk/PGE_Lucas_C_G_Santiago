@@ -40,3 +40,5 @@ Nesse momento a aplicação avisará há uma série de _migrations_ não aplicad
 ```
 manage.py migrate
 ```
+
+Agora a API estará em completo funcionamento.
