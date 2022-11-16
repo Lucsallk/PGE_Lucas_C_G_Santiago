@@ -17,7 +17,7 @@ class Estagiario(models.Model):
     cursoGrad = models.CharField(max_length=120)
     instEnsino = models.CharField(max_length=220)
     cargaHoraria = models.SmallIntegerField()
-    setorAlocado = models.ForeignKey(Setor, related_name="setor", on_delete=models.SET_DEFAULT, default="Pendendo setor")
+    setorAlocado = models.ForeignKey(Setor, related_name="setor", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nomeCompleto
