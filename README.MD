@@ -42,3 +42,7 @@ manage.py migrate
 ```
 
 Agora a API estará em completo funcionamento.
+
+### Banco de dados
+
+Foram criadas duas tabelas para a aplicação sendo elas Setores e Estagiários. Sendo que só é possível criar um estagiário quando já existir no mínimo um setor criado e que no momento em que o setor for apagado os estagiários ligados a esse setor serão apagados também ( Levei em consideração que normalmente quando setor é diluído o estagiário não é demitido mas sim fica para remanejamento e processos similares mas achei que demonstrar a ligação entre essas tabelas seria mais interessante )
