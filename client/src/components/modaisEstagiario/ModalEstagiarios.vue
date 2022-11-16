@@ -11,7 +11,7 @@ const setorAlocado = ref();
 
 const adicionarEstagiario = () => {
     console.log(nomeCompleto.value)
-    getAPI.patch("/estagiarios/", {
+    getAPI.post("/estagiarios/", {
         nomeCompleto: nomeCompleto.value,
         cpf: cpf.value,
         dataNascimento: dataDeNascimento.value,

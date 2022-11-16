@@ -116,7 +116,7 @@ onMounted(fetchEstagiarios);
               </div>
             </div>
 
-            <div class="col-12 col-sm-2 col-lg-1 align-self-center p-2">
+            <div class="col-6 col-sm-2 col-lg-1 d-flex justify-content-center align-self-center p-2">
               <button
                 type="button"
                 class="btn btn-warning fw-semibold shadow"
@@ -127,7 +127,7 @@ onMounted(fetchEstagiarios);
                 Editar
               </button>
             </div>
-            <div class="col-12 col-sm-2 col-lg-1 p-2 align-self-center">
+            <div class="col-6 col-sm-2 col-lg-1 p-2 d-flex justify-content-center align-self-center">
               <button
                 @click="apagarEstagiario(estagiario.id)"
                 class="btn btn-danger fw-bold shadow"

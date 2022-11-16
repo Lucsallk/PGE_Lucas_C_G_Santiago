@@ -1,26 +1,26 @@
 <script setup>
-import { getAPI } from '../../assets/axios';
+import { getAPI } from "../../assets/axios";
 const props = defineProps(["dadosEstagiario"]);
 
 const editarEstagiario = (dadosEstagiario) => {
-  console.log(dadosEstagiario.id);
-  console.log(dadosEstagiario.nomeCompleto);
-  console.log("/estagiarios/" + dadosEstagiario.id + "/")
-  getAPI.patch("/estagiarios/" + dadosEstagiario.id + "/", {
-        id: dadosEstagiario.id,
-        nomeCompleto: dadosEstagiario.nomeCompleto,
-        cpf: dadosEstagiario.cpf,
-        dataNascimento: dadosEstagiario.dataDeNascimento,
-        cursoGrad: dadosEstagiario.cursoDeGraduacao,
-        instEnsino: dadosEstagiario.instEnsino,
-        cargaHoraria: dadosEstagiario.cargaHoraria,
-        setorAlocado: dadosEstagiario.setorAlocado,
-    }).then(response => {
-        console.log(response)
-        location.reload();
-    }).catch(err => console.log(err))
+  console.log(dadosEstagiario);
+  console.log(dadosEstagiario.dataNascimento);
+  getAPI
+    .patch("/estagiarios/" + dadosEstagiario.id + "/", {
+      id: dadosEstagiario.id,
+      nomeCompleto: dadosEstagiario.nomeCompleto,
+      cpf: dadosEstagiario.cpf,
+      dataNascimento: dadosEstagiario.dataNascimento,
+      cursoGrad: dadosEstagiario.cursoGrad,
+      instEnsino: dadosEstagiario.instEnsino,
+      cargaHoraria: dadosEstagiario.cargaHoraria,
+      setorAlocado: dadosEstagiario.setorAlocado,
+    })
+    .then(() => {
+      location.reload();
+    })
+    .catch((err) => console.log(err));
 };
-
 </script>
 
 <template>
@@ -56,6 +56,70 @@ const editarEstagiario = (dadosEstagiario) => {
                 id="nomeCompleto"
                 class="form-control"
                 placeholder="Fulado da Silva"
+                type="text"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-7">
+              <label for="cursoGrad" class="form-label"
+                >Curso de gradução:</label
+              >
+              <input
+                v-model="props.dadosEstagiario.cursoGrad"
+                id="cursoGrad"
+                class="form-control"
+                type="text"
+              />
+            </div>
+
+            <div class="col-5">
+              <label for="dataNascimento" class="form-label"
+                >Data de nascimento</label
+              >
+              <input
+                v-model="props.dadosEstagiario.dataNascimento"
+                id="dataNascimento"
+                class="form-control"
+                type="date"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-8">
+              <label for="instEnsino" class="form-label"
+                >Instituição de ensino</label
+              >
+              <input
+                v-model="props.dadosEstagiario.instEnsino"
+                id="instEnsino"
+                class="form-control"
+                type="text"
+              />
+            </div>
+
+            <div class="col-4">
+              <label for="cargaHoraria" class="form-label">Carga horária</label>
+              <input
+                v-model="props.dadosEstagiario.cargaHoraria"
+                id="cargaHoraria"
+                class="form-control"
+                type="number"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3">
+              <label for="setorAlocado" class="form-label"
+                >Setor alocado</label
+              >
+              <input
+                v-model="props.dadosEstagiario.setorAlocado"
+                id="setorAlocado"
+                class="form-control"
                 type="text"
               />
             </div>
