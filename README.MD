@@ -32,7 +32,7 @@ On Windows using PowerShell: `path\to\venv\Scripts\Activate.ps1`
 Prosseguindo
 
 ```
-pip install -r requirements
+pip install -r requirements.txt
 py manage.py runserver
 ```
 Nesse momento a aplicação avisará há uma série de _migrations_ não aplicadas, e que a aplicação não rodará da maneira correta até serem aplicadas. Agora iremos parar a aplicação no terminal e digitaremos o comando a baixo.

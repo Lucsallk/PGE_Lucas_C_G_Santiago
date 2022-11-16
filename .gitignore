@@ -109,7 +109,10 @@ venv.bak/
 /site 
 # mypy 
 .mypy_cache/ 
-.migrations
+
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
 # Sublime Text # 
 *.tmlanguage.cache 
 *.tmPreferences.cache 
