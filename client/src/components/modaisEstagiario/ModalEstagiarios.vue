@@ -67,7 +67,7 @@ const adicionarEstagiario = () => {
       cargaHoraria: cargaHoraria.value,
       setorAlocado: setorAlocado.value,
     })
-    .then((response) => {
+    .then(() => {
       location.reload();
     })
     .catch((err) => console.log(err));
@@ -85,7 +85,6 @@ const listarSetores = () => {
 };
 
 onMounted(listarSetores);
-onBeforeMount(fetchEstagiarios);
 </script>
 <template>
   <div
