@@ -66,7 +66,7 @@ const editarSetor = (dadosSetor) => {
                 >Chefe do setor</label
               >
               <input
-                v-model="props.dadosSetor.capacidadeSetor"
+                v-model="props.dadosSetor.chefe"
                 type="text"
                 class="form-control"
                 id="capacidadeSetor"

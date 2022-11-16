@@ -6,7 +6,7 @@ const chefe = ref("");
 const capacidadeSetor = ref(0);
 
 const adicionarSetores = () => {
-  if (nome.value === "" || chefe.value === "" || setorAlocado.value === 0)
+  if (nome.value === "" || chefe.value === "" || capacidadeSetor.value === 0)
     return alert("Preencha todos os campos");
   getAPI
     .post("/setores/", {
@@ -15,6 +15,7 @@ const adicionarSetores = () => {
       capacidadeSetor: capacidadeSetor.value,
     })
     .then((response) => {
+      console.log(response);
       location.reload();
     })
     .catch((err) => console.log(err));

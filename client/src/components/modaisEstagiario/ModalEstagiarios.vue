@@ -56,7 +56,6 @@ const adicionarEstagiario = () => {
 
   if (!validate(cpf.value)) return alert("CPF não válido");
 
-  qtdPessoasSetor();
   getAPI
     .post("/estagiarios/", {
       nomeCompleto: nomeCompleto.value,
