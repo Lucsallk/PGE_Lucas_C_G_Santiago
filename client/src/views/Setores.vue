@@ -1,8 +1,8 @@
 <script setup>
 import { getAPI } from "../assets/axios";
 import { onMounted, ref } from "vue";
-// import ModalEstagiarios from "../components/modaisEstagiario/ModalEstagiarios.vue";
-// import ModalEditEstagiario from "../components/modaisEstagiario/ModalEditEstagiario.vue";
+import ModalSetor from "../components/modaisSetores/ModalSetor.vue";
+import ModalEditSetor from "../components/modaisSetores/ModalEditSetor.vue";
 
 const setores = ref([]);
 const fetchSetor = () => {
@@ -10,15 +10,41 @@ const fetchSetor = () => {
     .get("/setores/")
     .then((response) => {
       setores.value = response.data;
-      console.log(response)
     })
     .catch((err) => console.log(err));
 };
 
-onMounted(fetchSetor)
+const apagarSetor = (id) => {
+  getAPI
+    .delete("/setores/" + id)
+    .then(() => {
+      location.reload();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const dadosSetor = ref({
+  id: 0,
+  nome: "",
+  chefe: "",
+  capacidadeSetor: "",
+});
+
+const editarSetor = (setor) => {
+  dadosSetor.value.id = setor.id;
+  dadosSetor.value.nome = setor.nome;
+  dadosSetor.value.chefe = setor.chefe;
+  dadosSetor.value.capacidadeSetor = setor.capacidadeSetor;
+};
+
+onMounted(fetchSetor);
 </script>
 
 <template>
+  <ModalSetor />
+
   <main class="mb-auto">
     <div class="container-fluid mb-3">
       <div class="d-flex justify-content-center">
@@ -37,11 +63,7 @@ onMounted(fetchSetor)
         </button>
       </div>
     </div>
-    <div
-      v-for="setor in setores"
-      :key="setores.id"
-      class="container-fluid"
-    >
+    <div v-for="setor in setores" :key="setores.id" class="container-fluid">
       <div class="row justify-content-center mx-2 mb-4">
         <div class="col-8 col-sm-8 col-lg-5 bg-light rounded shadow">
           <div class="row px-3 p-2">
@@ -75,24 +97,24 @@ onMounted(fetchSetor)
                 type="button"
                 class="btn btn-warning fw-semibold shadow"
                 data-bs-toggle="modal"
-                data-bs-target="#editModal"
-                @click="editarEstagiario(estagiario)"
+                data-bs-target="#exampleModal"
+                @click="editarSetor(setor)" 
               >
-                Editar
+                Launch demo modal
               </button>
             </div>
             <div
               class="col-12 col-sm-4 col-lg-2 d-flex justify-content-center align-self-center"
             >
               <button
-                @click="apagarEstagiario(estagiario.id)"
+                @click="apagarSetor(setor.id)"
                 class="btn btn-danger fw-bold shadow"
               >
                 Apagar
               </button>
             </div>
-
-            <!-- <ModalEditEstagiario :dadosEstagiario="dadosEstagiario"/> -->
+            
+            <ModalEditSetor :dadosSetor="dadosSetor" />
           </div>
         </div>
       </div>

@@ -4,8 +4,6 @@ import { getAPI } from "../../assets/axios";
 const props = defineProps(["dadosEstagiario"]);
 
 const editarEstagiario = (dadosEstagiario) => {
-  console.log(dadosEstagiario);
-  console.log(dadosEstagiario.dataNascimento);
   getAPI
     .patch("/estagiarios/" + dadosEstagiario.id + "/", {
       id: dadosEstagiario.id,
@@ -49,7 +47,7 @@ onMounted(listarSetores);
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="cadModalLabel">
-            Adicionar Estagiário
+            Editar Estagiário
           </h1>
           <button
             type="button"
